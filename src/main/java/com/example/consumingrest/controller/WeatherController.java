@@ -1,28 +1,23 @@
 package com.example.consumingrest.controller;
 
 import com.example.consumingrest.responsemodel.SimpleWeatherResponse;
-import com.example.consumingrest.responsemodel.openweathermap.WeatherResponse;
+import com.example.consumingrest.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class WeatherController {
-    final RestTemplate restTemplate;
-    @Value("${apiKey}")
-    private String apiKey;
+    final WeatherService weatherService;
 
     @Autowired
-    public WeatherController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public WeatherController(WeatherService weatherService) {
+        this.weatherService = weatherService;
     }
 
     @GetMapping("/api/weather")
     public SimpleWeatherResponse getWeather() {
-        WeatherResponse weatherResponse = restTemplate.getForObject(
-                "https://api.openweathermap.org/data/2.5/weather?q=Budapest,HU&appid=" + apiKey + "&units=metric&lang=hu", WeatherResponse.class);
-    return new SimpleWeatherResponse(weatherResponse);
+        return weatherService.getSimpleWeatherResponse();
     }
+
 }
