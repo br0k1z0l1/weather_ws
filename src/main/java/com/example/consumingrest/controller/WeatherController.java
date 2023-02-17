@@ -1,4 +1,4 @@
-package com.example.consumingrest;
+package com.example.consumingrest.controller;
 
 import com.example.consumingrest.responsemodel.SimpleWeatherResponse;
 import com.example.consumingrest.responsemodel.openweathermap.WeatherResponse;
