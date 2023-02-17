@@ -1,6 +1,6 @@
 package com.example.consumingrest;
 
-import com.example.consumingrest.responsemodel.WeatherResponse;
+import com.example.consumingrest.responsemodel.openweathermap.WeatherResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

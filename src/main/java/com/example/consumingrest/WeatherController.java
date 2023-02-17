@@ -1,5 +1,6 @@
-package com.example.consumingrest.responsemodel;
+package com.example.consumingrest;
 
+import com.example.consumingrest.responsemodel.openweathermap.WeatherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
