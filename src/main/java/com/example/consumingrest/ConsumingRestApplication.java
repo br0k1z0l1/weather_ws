@@ -8,16 +8,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableCaching
+@EnableScheduling
 public class ConsumingRestApplication {
 
     @Value("${apiKey}")
     private String apiKey;
 
-    private static final Logger log = LoggerFactory.getLogger(ConsumingRestApplication.class);
+    static final Logger log = LoggerFactory.getLogger(ConsumingRestApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ConsumingRestApplication.class, args);
@@ -36,4 +42,10 @@ public class ConsumingRestApplication {
             log.info(weatherResponse.toString());
         };
     }
+
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("cities");
+    }
+
 }
