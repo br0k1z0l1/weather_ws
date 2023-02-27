@@ -43,4 +43,11 @@ public class WeatherService {
                 url, WeatherResponse.class);
         return new SimpleWeatherResponse(weatherResponse);
     }
+
+    @CacheEvict(value = "cities", allEntries = true)
+    @Scheduled(timeUnit = TimeUnit.MINUTES, fixedRateString = "${caching.spring.citiesTTL}")
+    public void emptyCitiesCache() {
+        logger.info("emptying cities cache");
+    }
+
 }
