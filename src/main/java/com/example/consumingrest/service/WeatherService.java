@@ -45,7 +45,7 @@ public class WeatherService {
     }
 
     @CacheEvict(value = "cities", allEntries = true)
-    @Scheduled(timeUnit = TimeUnit.MINUTES, fixedRateString = "${caching.spring.citiesTTL}")
+    @Scheduled(timeUnit = TimeUnit.MINUTES, fixedDelayString = "${caching.spring.citiesTTL}")
     public void emptyCitiesCache() {
         logger.info("emptying cities cache");
     }
